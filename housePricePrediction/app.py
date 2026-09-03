@@ -2,6 +2,18 @@ import customtkinter as ctk
 from tkinter import messagebox
 import pandas as pd
 from sklearn.linear_model import Ridge
+import os
+import sys
+
+def resource_path(relative_path):
+    """Get the correct path for normal Python and PyInstaller EXE."""
+    try:
+        base_path = sys._MEIPASS
+    except AttributeError:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 
 
 # ============================================================
@@ -16,7 +28,9 @@ ctk.set_default_color_theme("blue")
 # LOAD DATASET
 # ============================================================
 
-df = pd.read_csv("data/house_dataset.csv")
+df = pd.read_csv(
+    resource_path("data/house_dataset.csv")
+)
 
 
 # ============================================================
